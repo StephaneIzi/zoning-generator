@@ -1,0 +1,7 @@
+{
+  "name": "postcodeJsonGen",
+  "version": "1.0.0",
+  "dependencies": {
+    "csv-parse": "^5.3.5"
+  }
+}
