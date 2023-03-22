@@ -21,7 +21,6 @@ fs.createReadStream("./communes-departement-region.csv")
           data: {
             code: departmentCode,
             department: departmentCode,
-            postalCodes: [departmentCode],
           },
           selected: false,
           enabled: true,
@@ -32,9 +31,8 @@ fs.createReadStream("./communes-departement-region.csv")
             {
               label: [row[9]],
               data: {
-                code: row[0],
+                code: row[2],
                 department: departmentCode,
-                postalCodes: [row[2]],
               },
               selected: false,
               enabled: true,
@@ -54,31 +52,20 @@ fs.createReadStream("./communes-departement-region.csv")
             //   ? false
             //   : true
             //   &&
-            row[11] === row[0].substring(0, row[11].length)
+            row[11] === row[2].substring(0, row[11].length)
           ) {
             const child = storedObject.children?.find(
-              (child) => child.data.code === row[0]
+              (child) => child.data.code === row[2]
             );
 
             if (child ? true : false) {
-              // child.label.push(row[9]);
-
-              const hasPostalCode = Boolean(
-                child.data.postalCodes.find((postalCode) => {
-                  return postalCode === row[2];
-                })
-              );
-
-              if (!hasPostalCode) {
-                child.data.postalCodes.push(row[2]);
-              }
+              child.label.push(row[9]);
             } else {
               storedObject.children.push({
                 label: [row[9]],
                 data: {
-                  code: row[0],
+                  code: row[2],
                   department: departmentCode,
-                  postalCodes: [row[2]],
                 },
                 selected: false,
                 enabled: true,
@@ -100,7 +87,6 @@ fs.createReadStream("./communes-departement-region.csv")
             data: {
               code: departmentCode,
               department: departmentCode,
-              postalCodes: [departmentCode],
             },
             selected: false,
             enabled: true,
@@ -111,9 +97,8 @@ fs.createReadStream("./communes-departement-region.csv")
               {
                 label: [row[9]],
                 data: {
-                  code: row[0],
+                  code: row[2],
                   department: departmentCode,
-                  postalCodes: [row[2]],
                 },
                 selected: false,
                 enabled: true,
